@@ -10,6 +10,11 @@ document.addEventListener('DOMContentLoaded', function(){
   const fileField = document.querySelector('input[type="file"][name="post[images][]"]');
   // input要素で値の変化が起きた際に呼び出される関数
   fileField.addEventListener('change', function(e){
+
+    // data-index（何番目を操作しているか）を取得
+    const dataIndex = e.target.getAttribute('data-index');
+    console.log( dataIndex);
+
     // 古いプレビューが存在する場合は削除
     const alreadyPreview = document.querySelector('.preview');
     if (alreadyPreview) {
@@ -20,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function(){
     // 画像を表示するためのdiv要素を生成
     const previewWrapper = document.createElement('div');
     previewWrapper.setAttribute('class', 'preview');
+    previewWrapper.setAttribute('data-index', dataIndex);
     // 表示する画像を生成
     const previewImage = document.createElement('img');
     previewImage.setAttribute('class', 'preview-image');
